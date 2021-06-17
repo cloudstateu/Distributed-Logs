@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  front:
+    image: logs-front
+    ports:
+      - "8088:443"
+    build:
+      context: .
+      dockerfile: Front/Dockerfile
+   
+  back:
+    image: logs-back
+    build:
+      context: .
+      dockerfile: Back/Dockerfile
+
+  middle:
+    image: logs-middle
+    build:
+      context: .
+      dockerfile: Middle/Dockerfile
