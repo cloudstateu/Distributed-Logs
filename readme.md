@@ -1,5 +1,6 @@
 # Architecture
-System with tree layers: Front, Middle, Back
+- System with tree layers: Front, Middle, Back. 
+- Jaeger logs dashboard
 
 ### Operations
 * Api/Success
@@ -18,3 +19,5 @@ System with tree layers: Front, Middle, Back
 1. Go to `http://localhost:8088/swagger` in the browser
 
 1. Execute `Api/Success` and `Api/Failure` operations. You may use build in Swagger UI
+
+1. Browse 'http://localhost:16686/' for Jaeger dashboard
