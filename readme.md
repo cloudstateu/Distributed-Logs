@@ -1,9 +1,9 @@
 # Architecture
 System with tree layers: Front, Middle, Back
 
-### Controllers
-* Success
-* Failrue
+### Operations
+* Api/Success
+* Api/Failrue
 
 ### Flow
 * Success: Front > Middle (700 ms delay) > Back (1500 ms delay)
@@ -17,4 +17,4 @@ System with tree layers: Front, Middle, Back
 
 1. Go to `https://localhost:8088/swagger` in the browser
 
-1. Execute `Api/Success` and `Api/Failure` operations
+1. Execute `Api/Success` and `Api/Failure` operations. You may use build in Swagger UI
