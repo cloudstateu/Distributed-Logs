@@ -15,6 +15,6 @@ System with tree layers: Front, Middle, Back
     docker compose up
     ```
 
-1. Go to `https://localhost:8088/swagger` in the browser
+1. Go to `http://localhost:8088/swagger` in the browser
 
 1. Execute `Api/Success` and `Api/Failure` operations. You may use build in Swagger UI
