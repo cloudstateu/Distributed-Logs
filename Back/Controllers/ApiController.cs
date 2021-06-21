@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using OpenTracing;
 using System;
 using System.Threading.Tasks;
 
@@ -9,28 +9,28 @@ namespace Back.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
+        private readonly ITracer _tracer;
 
-        private readonly ILogger<ApiController> _logger;
-
-        public ApiController(ILogger<ApiController> logger)
+        public ApiController(ITracer tracer)
         {
-            _logger = logger;
+            _tracer = tracer;
         }
 
         [HttpGet("success")]
         public async Task Success()
         {
-            _logger.LogInformation("Back-SuccessRequested");
+            _tracer.ActiveSpan.Log("Back-SuccessRequested");
 
             await Task.Delay(1500);
 
-            _logger.LogInformation("Back-SuccessResponse");
+            _tracer.ActiveSpan.Log("Back-SuccessResponse");
         }
 
         [HttpGet("failure")]
         public void Failure()
         {
-            _logger.LogInformation("Back-FailureRequested");
+            _tracer.ActiveSpan.Log("Back-FailureRequested");
+
             throw new Exception("Test exception");
         }
     }

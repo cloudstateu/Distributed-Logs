@@ -1,6 +1,6 @@
 ﻿using Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using OpenTracing;
 using System.Threading.Tasks;
 
 namespace Middle.Controllers
@@ -9,30 +9,32 @@ namespace Middle.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
+        private readonly ITracer _tracer;
 
-        private readonly ILogger<ApiController> _logger;
-
-        public ApiController(ILogger<ApiController> logger)
+        public ApiController(ITracer tracer)
         {
-            _logger = logger;
+            _tracer = tracer;
         }
 
         [HttpGet("success")]
         public async Task Success()
         {
-            _logger.LogInformation("Middle-SuccessRequested");
+            _tracer.ActiveSpan?.Log("Middle-SuccessRequested"); ;
 
             await Task.Delay(700);
             var resp = await Tools.CallApi("Back", "Success");
 
-            _logger.LogInformation($"Middle-SuccessResponse: {resp.StatusCode}");
+            _tracer.ActiveSpan.Log($"Middle-SuccessResponse: {resp.StatusCode}");
         }
 
         [HttpGet("failure")]
         public async Task Failure()
         {
-            _logger.LogInformation("Middle-FailureRequested");
+            _tracer.ActiveSpan.Log("Middle-FailureRequested");
+            
             var resp = await Tools.CallApi("Back", "Failure");
+
+            _tracer.ActiveSpan.Log($"Middle-FailureResponse: {resp.StatusCode}");
         }
     }
 }

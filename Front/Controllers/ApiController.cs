@@ -1,6 +1,6 @@
 ﻿using Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using OpenTracing;
 using System.Threading.Tasks;
 
 namespace Front.Controllers
@@ -9,29 +9,31 @@ namespace Front.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
+        private readonly ITracer _tracer;
 
-        private readonly ILogger<ApiController> _logger;
-
-        public ApiController(ILogger<ApiController> logger)
+        public ApiController(ITracer tracer)
         {
-            _logger = logger;
+            _tracer = tracer;
         }
 
         [HttpGet("success")]
         public async Task Success()
         {
-            _logger.LogInformation("Front-SuccessRequested");
+            _tracer.ActiveSpan.Log("Front-SuccessRequested");
 
             var resp = await Tools.CallApi("Middle", "Success");
 
-            _logger.LogInformation($"Front-SuccessResponse: {resp.StatusCode}");
+            _tracer.ActiveSpan.Log($"Front-SuccessResponse: {resp.StatusCode}");
         }
 
         [HttpGet("failure")]
-        public void Failure()
+        public async Task Failure()
         {
-            _logger.LogInformation("Front-FailureRequested");
-            Tools.CallApi("Middle", "Failure");
+            _tracer.ActiveSpan.Log("Front-FailureRequested");
+
+            var resp = await Tools.CallApi("Middle", "Failure");
+
+            _tracer.ActiveSpan.Log($"Front-FailureResponse: {resp.StatusCode}");
         }
     }
 }
