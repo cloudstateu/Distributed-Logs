@@ -1,6 +1,7 @@
 # Architecture
 - System with tree layers: Front, Middle, Back. 
 - Jaeger logs dashboard
+- Static IP addressess set in `docker-compose.yaml` - simplification for the purposes of PoC 
 
 ### Operations
 * Api/Success
