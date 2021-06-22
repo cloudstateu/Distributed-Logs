@@ -1,15 +1,16 @@
 # TODO 
 - [ ] no logs on release build (still works on debug in Visual Studio)
-- [ ] insert OpenTracing / Jaeger documentation do Readme
-- [ ] insert jaegertracing/all-in-one documentation do Readme
+- [x] insert OpenTracing / Jaeger documentation do Readme
+- [x] insert jaegertracing/all-in-one documentation do Readme
 - [ ] ? call Back twice from Middle
 - [ ] sending 'Baggage' ('correlation_id') through layers
 - [ ] starting 'Trace' on frontend
 - [ ] Possibilities to swap UpdSender
 
 # Architecture
+- 4 separate container services
 - System with tree layers: Front, Middle, Back. 
-- Jaeger logs dashboard
+- Jaeger all-in-one: agent (network listener), collector (receives traces, validate, indexing, transformations), in-memory storage, Query (dashboard)
 - Static IP addressess set in `docker-compose.yaml` - simplification for the purposes of PoC 
 
 ### Operations
@@ -31,3 +32,10 @@
 1. Execute `Api/Success` and `Api/Failure` operations. You may use build in Swagger UI
 
 1. Browse 'http://localhost:16686/' for Jaeger dashboard
+
+# Docs
+- https://opentelemetry.io/
+- [Open Tracing](https://github.com/opentracing/opentracing-csharp)
+- [Open Tracing tutorial](https://github.com/yurishkuro/opentracing-tutorial/tree/master/csharp)
+- Jaeger: [homepage](https://www.jaegertracing.io/), [architecture](https://www.jaegertracing.io/docs/1.22/architecture/)
+- [Jaeger C# client](https://github.com/jaegertracing/jaeger-client-csharp)
