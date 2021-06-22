@@ -1,3 +1,12 @@
+# TODO 
+- [ ] no logs on release build (still works on debug in Visual Studio)
+- [ ] insert OpenTracing / Jaeger documentation do Readme
+- [ ] insert jaegertracing/all-in-one documentation do Readme
+- [ ] ? call Back twice from Middle
+- [ ] sending 'Baggage' ('correlation_id') through layers
+- [ ] starting 'Trace' on frontend
+- [ ] Possibilities to swap UpdSender
+
 # Architecture
 - System with tree layers: Front, Middle, Back. 
 - Jaeger logs dashboard
