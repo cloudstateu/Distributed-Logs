@@ -21,10 +21,22 @@ namespace Middle.Controllers
         {
             _tracer.ActiveSpan?.Log("Middle-SuccessRequested"); ;
 
-            await Task.Delay(700);
+            await Delay();
             var resp = await Tools.CallApi("Back", "Success");
 
             _tracer.ActiveSpan.Log($"Middle-SuccessResponse: {resp.StatusCode}");
+        }
+
+        private async Task Delay()
+        {
+            var currentStpan = _tracer.BuildSpan("middle-delay")
+                .AsChildOf(_tracer.ActiveSpan)
+                .StartActive();
+
+            await Task.Delay(700);
+
+            currentStpan.Span.Finish();
+            currentStpan.Dispose();
         }
 
         [HttpGet("failure")]

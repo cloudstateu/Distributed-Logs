@@ -20,10 +20,22 @@ namespace Back.Controllers
         public async Task Success()
         {
             _tracer.ActiveSpan.Log("Back-SuccessRequested");
+            
+            await Delay();
+
+            _tracer.ActiveSpan.Log("Back-SuccessResponse");
+        }
+
+        private async Task Delay()
+        {
+            var currentSpan = _tracer.BuildSpan("back-delay")
+                .AsChildOf(_tracer.ActiveSpan)
+                .StartActive();
 
             await Task.Delay(1500);
 
-            _tracer.ActiveSpan.Log("Back-SuccessResponse");
+            currentSpan.Span.Finish();
+            currentSpan.Dispose();
         }
 
         [HttpGet("failure")]
