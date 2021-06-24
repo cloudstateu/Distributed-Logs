@@ -1,6 +1,3 @@
-# TODO 
-- [ ] no logs on release build (still works on debug in Visual Studio)
-
 # Architecture
 - 4 separate container services
   - System with tree layers: Front, Middle, Back. 
