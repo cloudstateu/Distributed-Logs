@@ -8,27 +8,18 @@ services:
     build:
       context: .
       dockerfile: Front/Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.10
    
   back:
     image: logs-back
     build:
       context: .
       dockerfile: Back/Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.12
 
   middle:
     image: logs-middle
     build:
       context: .
       dockerfile: Middle/Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.11
 
   jaeger:    
     image: jaegertracing/all-in-one:latest
@@ -40,14 +31,3 @@ services:
       - "16686:16686"
       - "14268:14268"
       - "9411:9411"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.5
-
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 10.5.0.0/16
-        gateway: 10.5.0.1

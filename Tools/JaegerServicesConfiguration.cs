@@ -23,7 +23,7 @@ namespace Common
                 var reporter = new RemoteReporter
                     .Builder()
                     .WithLoggerFactory(loggerFactory)
-                    .WithSender(new UdpSender("10.5.0.5", 0, 0)) // TODO Get from configuration
+                    .WithSender(new UdpSender("jaeger", 0, 0)) // TODO Get from configuration
                     .Build();
 
                 var tracer = new Tracer.Builder(serviceName)

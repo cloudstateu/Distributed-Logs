@@ -3,9 +3,8 @@
 
 # Architecture
 - 4 separate container services
-- System with tree layers: Front, Middle, Back. 
-- Jaeger all-in-one: agent (network listener), collector (receives traces, validate, indexing, transformations), in-memory storage, Query (dashboard)
-- Static IP addressess set in `docker-compose.yaml` - simplification for the purposes of PoC 
+  - System with tree layers: Front, Middle, Back. 
+  - Jaeger all-in-one: agent (network listener), collector (receives traces, validate, indexing, transformations), in-memory storage, Query (dashboard)
 
 ### Operations
 * Api/Success
