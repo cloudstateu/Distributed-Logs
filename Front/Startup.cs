@@ -24,6 +24,7 @@ namespace Front
             services.AddControllers(_ =>
             {
                 _.Filters.Add<OpenTracingBaggageFilter>();
+                _.Filters.Add<OpenTracingTraceIdFilter>();
             });
 
             services.AddSwaggerGen(c =>

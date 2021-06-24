@@ -35,6 +35,7 @@
 
 1. Execute `Api/Success` and `Api/Failure` operations in swagger tester
 2. Execute `Api/Success` / `Api/Failure` with `correlation-id` header
+3. Execute `Api/Success` / `Api/Failure` and look for `trace-id` response header
 
 # Docs
 - https://opentelemetry.io/
