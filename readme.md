@@ -1,11 +1,5 @@
 # TODO 
 - [ ] no logs on release build (still works on debug in Visual Studio)
-- [x] insert OpenTracing / Jaeger documentation do Readme
-- [x] insert jaegertracing/all-in-one documentation do Readme
-- [ ] ? call Back twice from Middle
-- [x] sending 'Baggage' (`correlation_id`) through layers
-- [ ] starting 'Trace' on frontend
-- [ ] Possibilities to swap UpdSender
 
 # Architecture
 - 4 separate container services
