@@ -29,13 +29,12 @@
 
 1. Go to `http://localhost:8088/swagger` in the browser
 
-1. Browse 'http://localhost:16686/' for Jaeger dashboard and recent requests
+1. Browse 'http://localhost:16686/' for Jaeger UI dashboard and recent requests
 
 ### Scenarios 
-
-1. Execute `Api/Success` and `Api/Failure` operations in swagger tester
-2. Execute `Api/Success` / `Api/Failure` with `correlation-id` header
-3. Execute `Api/Success` / `Api/Failure` and look for `trace-id` response header
+1. Execute operations operations in swagger tester UI. Browse Jaeger UI for logged spans.
+2. Execute opeartions with `correlation-id` header (e.g. in Postman) - it should appear in http request spans.
+3. Execute operations and look for `trace-id` response header. It may be used by frontend to track given requests. Lookup by Trace ID in Jagger UI. 
 
 # Docs
 - https://opentelemetry.io/
