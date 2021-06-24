@@ -22,7 +22,7 @@ namespace Middle.Controllers
             _tracer.ActiveSpan?.Log("Middle-SuccessRequested"); ;
 
             await Delay();
-            var resp = await Tools.CallApi("Back", "Success");
+            var resp = await Tools.CallApi("Back", "Success", _tracer);
 
             _tracer.ActiveSpan.Log($"Middle-SuccessResponse: {resp.StatusCode}");
         }
@@ -44,7 +44,7 @@ namespace Middle.Controllers
         {
             _tracer.ActiveSpan.Log("Middle-FailureRequested");
             
-            var resp = await Tools.CallApi("Back", "Failure");
+            var resp = await Tools.CallApi("Back", "Failure", _tracer);
 
             _tracer.ActiveSpan.Log($"Middle-FailureResponse: {resp.StatusCode}");
         }

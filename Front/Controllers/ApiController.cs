@@ -21,7 +21,7 @@ namespace Front.Controllers
         {
             _tracer.ActiveSpan.Log("Front-SuccessRequested");
 
-            var resp = await Tools.CallApi("Middle", "Success");
+            var resp = await Tools.CallApi("Middle", "Success", _tracer);
 
             _tracer.ActiveSpan.Log($"Front-SuccessResponse: {resp.StatusCode}");
         }
@@ -31,7 +31,7 @@ namespace Front.Controllers
         {
             _tracer.ActiveSpan.Log("Front-FailureRequested");
 
-            var resp = await Tools.CallApi("Middle", "Failure");
+            var resp = await Tools.CallApi("Middle", "Failure", _tracer);
 
             _tracer.ActiveSpan.Log($"Front-FailureResponse: {resp.StatusCode}");
         }
