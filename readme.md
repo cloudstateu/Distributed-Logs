@@ -3,7 +3,7 @@
 - [x] insert OpenTracing / Jaeger documentation do Readme
 - [x] insert jaegertracing/all-in-one documentation do Readme
 - [ ] ? call Back twice from Middle
-- [ ] sending 'Baggage' ('correlation_id') through layers
+- [x] sending 'Baggage' (`correlation_id`) through layers
 - [ ] starting 'Trace' on frontend
 - [ ] Possibilities to swap UpdSender
 
@@ -29,9 +29,12 @@
 
 1. Go to `http://localhost:8088/swagger` in the browser
 
-1. Execute `Api/Success` and `Api/Failure` operations. You may use build in Swagger UI
+1. Browse 'http://localhost:16686/' for Jaeger dashboard and recent requests
 
-1. Browse 'http://localhost:16686/' for Jaeger dashboard
+### Scenarios 
+
+1. Execute `Api/Success` and `Api/Failure` operations in swagger tester
+2. Execute `Api/Success` / `Api/Failure` with `correlation-id` header
 
 # Docs
 - https://opentelemetry.io/
