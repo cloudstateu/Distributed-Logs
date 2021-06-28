@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Jaeger;
+using Microsoft.AspNetCore.Mvc;
 using OpenTracing;
 using System;
 using System.Threading.Tasks;
@@ -20,16 +21,17 @@ namespace Back.Controllers
         public async Task Success()
         {
             _tracer.ActiveSpan.Log("Back-SuccessRequested");
-            
-            await Delay();
+
+            // Simulting passing context from external service
+            await Delay(_tracer.ActiveSpan.Context.ToString());
 
             _tracer.ActiveSpan.Log("Back-SuccessResponse");
         }
 
-        private async Task Delay()
+        private async Task Delay(string parentSpanContext)
         {
             var currentSpan = _tracer.BuildSpan("back-delay")
-                .AsChildOf(_tracer.ActiveSpan)
+                .AsChildOf(SpanContext.ContextFromString(_tracer.ActiveSpan.Context.ToString()))
                 .StartActive();
 
             await Task.Delay(1500);
