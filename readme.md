@@ -25,6 +25,7 @@
 1. Execute operations operations in swagger tester UI. Browse Jaeger UI for logged spans.
 2. Execute opeartions with `correlation-id` header (e.g. in Postman) - it should appear in http request spans.
 3. Execute operations and look for `trace-id` response header. It may be used by frontend to track given requests. Lookup by Trace ID in Jagger UI. 
+4. Go to Back > appsettings.json and edit `SampleDatabase` connection string (and maybe `DatabaseQuery`) in order to view database communication in Jaeger.
 
 # Docs
 - https://opentelemetry.io/

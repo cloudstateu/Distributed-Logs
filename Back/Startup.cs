@@ -2,6 +2,7 @@ using Common;
 using Common.ActionFilters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +31,9 @@ namespace Back
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Back", Version = "v1" });
             });
+
+            services.AddDbContext<DatabaseContext>(_ =>
+                _.UseSqlServer(Configuration.GetConnectionString("SampleDatabase")));
 
             services.AddJaegerLogging();
         }
