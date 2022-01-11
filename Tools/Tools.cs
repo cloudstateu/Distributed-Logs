@@ -1,4 +1,5 @@
-﻿using OpenTracing;
+﻿using Microsoft.Extensions.Configuration;
+using OpenTracing;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,10 +15,12 @@ namespace Common
             _client = new HttpClient();
         }
 
-        public static Task<HttpResponseMessage> CallApi(string apiName, string method, ITracer tracer)
+        public static Task<HttpResponseMessage> CallApi(string method, IConfiguration configuration, ITracer tracer)
         {
             var req = new HttpRequestMessage();
             req.FillBaggage(tracer);
+
+            var apiName = configuration.GetValue<string>("NextApiEndpoint");
 
             req.RequestUri =
                 new Uri($"http://{apiName}/api/{method}");

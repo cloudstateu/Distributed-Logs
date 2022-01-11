@@ -10,6 +10,8 @@
 ### Flow
 * Success: Front > Middle (700 ms delay) > Back (1500 ms delay)
 * Failure: Front > Midle > Back (exception)
+  
+> Api endpoints are set in configuration (`appsettings.json`) - make sure it will work in your environment
 
 # Instructions
 1. Compose the environment. Run command in the root folder

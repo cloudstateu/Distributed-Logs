@@ -1,5 +1,6 @@
 ﻿using Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using OpenTracing;
 using System.Threading.Tasks;
 
@@ -10,10 +11,12 @@ namespace Middle.Controllers
     public class ApiController : ControllerBase
     {
         private readonly ITracer _tracer;
+        private readonly IConfiguration _configuration;
 
-        public ApiController(ITracer tracer)
+        public ApiController(ITracer tracer, IConfiguration configuration)
         {
             _tracer = tracer;
+            _configuration = configuration;
         }
 
         [HttpGet("success")]
@@ -22,7 +25,7 @@ namespace Middle.Controllers
             _tracer.ActiveSpan?.Log("Middle-SuccessRequested"); ;
 
             await Delay();
-            var resp = await Tools.CallApi("Back", "Success", _tracer);
+            var resp = await Tools.CallApi("Success", _configuration, _tracer);
 
             _tracer.ActiveSpan.Log($"Middle-SuccessResponse: {resp.StatusCode}");
         }
@@ -44,7 +47,7 @@ namespace Middle.Controllers
         {
             _tracer.ActiveSpan.Log("Middle-FailureRequested");
             
-            var resp = await Tools.CallApi("Back", "Failure", _tracer);
+            var resp = await Tools.CallApi("Failure", _configuration, _tracer);
 
             _tracer.ActiveSpan.Log($"Middle-FailureResponse: {resp.StatusCode}");
         }
