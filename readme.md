@@ -17,9 +17,9 @@
     docker compose up
     ```
 
-1. Go to `http://localhost:8088/swagger` in the browser
+1. Go to http://localhost:8088/swagger in the browser
 
-1. Browse 'http://localhost:16686/' for Jaeger UI dashboard and recent requests
+1. Browse http://localhost:16686/ for Jaeger UI dashboard and recent requests
 
 ### Scenarios 
 1. Execute operations operations in swagger tester UI. Browse Jaeger UI for logged spans.
